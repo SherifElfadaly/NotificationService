@@ -1,7 +1,7 @@
 import { BullModule } from '@nestjs/bull';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { NotificationModule } from 'src/notification/notification.module';
+import { NotificationModule } from '../notification/notification.module';
 import { NotifyProcessor } from './consumers/notiyf.processor';
 
 @Module({

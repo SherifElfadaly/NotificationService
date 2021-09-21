@@ -1,7 +1,7 @@
 import { Processor, Process } from '@nestjs/bull';
 import { Job } from 'bull';
-import { Notification } from 'src/notification/interfaces/notification.interface';
-import { NotificationService } from 'src/notification/notification.service';
+import { Notification } from '../../notification/interfaces/notification.interface';
+import { NotificationService } from '../../notification/notification.service';
 
 @Processor('notify')
 export class NotifyProcessor {

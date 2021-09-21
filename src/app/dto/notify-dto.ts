@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsEnum, ValidateIf, IsArray, ArrayMinSize, ArrayMaxSize, IsString } from 'class-validator';
-import { NotificationTypes } from 'src/notification/enums/notification-types';
-import { Notification } from 'src/notification/interfaces/notification.interface';
+import { NotificationTypes } from '../../notification/enums/notification-types';
+import { Notification } from '../../notification/interfaces/notification.interface';
 
 export class NotifyDto implements Notification {
     @IsNotEmpty()

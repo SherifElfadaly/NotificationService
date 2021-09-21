@@ -1,4 +1,4 @@
-import { NotificationTypes } from "src/app/enums/notification-types";
+import { NotificationTypes } from "../../app/enums/notification-types";
 import { Notification } from "../interfaces/notification.interface";
 import { Notifier } from "../interfaces/notifier.interface";
 import PushNotifier from "../notifiers/push-notifier";
