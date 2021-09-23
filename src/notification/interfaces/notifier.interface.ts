@@ -1,6 +1,6 @@
 export interface Notifier {
-    identifier: string;
-    message: string;
+  identifier: string;
+  message: string;
 
-    send(): boolean;
+  send(): boolean;
 }

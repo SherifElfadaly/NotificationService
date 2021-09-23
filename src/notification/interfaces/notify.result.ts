@@ -1,4 +1,4 @@
 export interface NotifyResult {
-    success: number;
-    failed: number;
+  success: number;
+  failed: number;
 }

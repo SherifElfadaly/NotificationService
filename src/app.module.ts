@@ -12,7 +12,7 @@ import queueConfig from './queue/config/queue.config';
       load: [queueConfig],
     }),
     QueueModule,
-    NotificationModule
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

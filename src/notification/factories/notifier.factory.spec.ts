@@ -26,7 +26,10 @@ describe('NotifierFactory', () => {
 
     it('should return Notifier', async () => {
       const notification = new NotifyDto();
-      const result = await notifierFactory.getNotifier(NotificationTypes.SMS, notification);
+      const result = await notifierFactory.getNotifier(
+        NotificationTypes.SMS,
+        notification,
+      );
 
       expect(result as Notifier).toBeTruthy();
     });

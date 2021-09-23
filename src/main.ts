@@ -11,8 +11,8 @@ async function bootstrap() {
       options: {
         urls: ['amqp://localhost:5672'],
         queue: 'notifications_queue',
-      }
-    }
+      },
+    },
   );
 
   app.useGlobalPipes(

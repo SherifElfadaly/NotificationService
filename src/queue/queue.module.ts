@@ -17,8 +17,8 @@ import { NotifyProcessor } from './consumers/notiyf.processor';
       name: 'notify',
       defaultJobOptions: {
         attempts: 5,
-        backoff: 60000
-      }
+        backoff: 60000,
+      },
     }),
   ],
   providers: [NotifyProcessor],

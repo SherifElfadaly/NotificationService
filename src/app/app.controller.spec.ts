@@ -10,16 +10,20 @@ describe('AppController', () => {
   let appService: AppService;
 
   beforeEach(async () => {
-    
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         {
           provide: AppService,
           useFactory: () => ({
-            notify: jest.fn((notification: NotifyDto): Promise<JobId> => Promise.resolve(1)),
-            notifyGroup: jest.fn((notification: NotifyDto): Promise<JobId[]> => Promise.resolve([1])),
+            notify: jest.fn(
+              (notification: NotifyDto): Promise<JobId> => Promise.resolve(1),
+            ),
+            notifyGroup: jest.fn(
+              (notification: NotifyDto): Promise<JobId[]> =>
+                Promise.resolve([1]),
+            ),
           }),
-        }
+        },
       ],
       controllers: [AppController],
     }).compile();
@@ -59,16 +63,18 @@ describe('AppController', () => {
 
     it('should call service notifyGroup', async () => {
       const groupNotification = new NotifyGroupDto();
-      const notification = new NotifyDto;
+      const notification = new NotifyDto();
       groupNotification.recipients = [notification];
       await appController.notifyGroup(groupNotification);
 
-      expect(appService.notifyGroup).toHaveBeenCalledWith(groupNotification.recipients);
+      expect(appService.notifyGroup).toHaveBeenCalledWith(
+        groupNotification.recipients,
+      );
     });
 
     it('should return jobs array', async () => {
       const groupNotification = new NotifyGroupDto();
-      groupNotification.recipients = [new NotifyDto];
+      groupNotification.recipients = [new NotifyDto()];
       const result = await appController.notifyGroup(groupNotification);
 
       expect(result as JobId[]).toBeTruthy();

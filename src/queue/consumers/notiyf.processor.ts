@@ -5,7 +5,7 @@ import { NotificationService } from '../../notification/notification.service';
 
 @Processor('notify')
 export class NotifyProcessor {
-  constructor(private notificationService: NotificationService) { }
+  constructor(private notificationService: NotificationService) {}
 
   @Process()
   notify(job: Job<Notification>) {

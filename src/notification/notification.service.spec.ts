@@ -9,10 +9,10 @@ import { NotificationService } from './notification.service';
 describe('NotificationService', () => {
   let notificationService: NotificationService;
   let notifierFactory: NotifierFactory;
-  const notifierMock = { 
+  const notifierMock = {
     identifier: '',
     message: '',
-    send: jest.fn().mockReturnValue({success: 1, failed: 0}) 
+    send: jest.fn().mockReturnValue({ success: 1, failed: 0 }),
   };
 
   beforeEach(async () => {
@@ -22,9 +22,12 @@ describe('NotificationService', () => {
         {
           provide: NotifierFactory,
           useFactory: () => ({
-            getNotifier: jest.fn((notifierType: string, notification: Notification): Notifier => notifierMock),
+            getNotifier: jest.fn(
+              (notifierType: string, notification: Notification): Notifier =>
+                notifierMock,
+            ),
           }),
-        }
+        },
       ],
     }).compile();
 
@@ -46,7 +49,10 @@ describe('NotificationService', () => {
       notification.type = [NotificationTypes.SMS];
       await notificationService.notify(notification);
 
-      expect(notifierFactory.getNotifier).toHaveBeenCalledWith(notification.type[0], notification);
+      expect(notifierFactory.getNotifier).toHaveBeenCalledWith(
+        notification.type[0],
+        notification,
+      );
     });
 
     it('should call notifier send', async () => {

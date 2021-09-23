@@ -7,7 +7,7 @@ import { NotifyGroupDto } from './dto/notify-group.dto';
 
 describe('AppService', () => {
   let appService: AppService;
-  const notifyQueueMock = { add: jest.fn().mockReturnValue({id: 1}) };
+  const notifyQueueMock = { add: jest.fn().mockReturnValue({ id: 1 }) };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -56,7 +56,7 @@ describe('AppService', () => {
 
     it('should dispatch notifyGroup job', async () => {
       const groupNotification = new NotifyGroupDto();
-      const notification = new NotifyDto;
+      const notification = new NotifyDto();
       groupNotification.recipients = [notification];
       await appService.notifyGroup(groupNotification.recipients);
 
@@ -65,7 +65,7 @@ describe('AppService', () => {
 
     it('should return jobs array', async () => {
       const groupNotification = new NotifyGroupDto();
-      groupNotification.recipients = [new NotifyDto];
+      groupNotification.recipients = [new NotifyDto()];
       const result = await appService.notifyGroup(groupNotification.recipients);
 
       expect(result as JobId[]).toBeTruthy();

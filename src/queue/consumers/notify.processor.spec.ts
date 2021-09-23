@@ -1,23 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { NotifyResult } from '../../notification/interfaces/notify.result';
-import { NotificationService } from '../../notification/notification.service';
 import { NotifyProcessor } from './notiyf.processor';
 
 describe('NotifyProcessor', () => {
   let notifyProcessor: NotifyProcessor;
-  let notificationService: NotificationService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        NotifyProcessor,
-        {
-          provide: NotificationService,
-          useFactory: () => ({
-            notify: jest.fn((notification: Notification): NotifyResult => ({ success: 1, failed: 0 })),
-          }),
-        }
-      ],
+      providers: [NotifyProcessor],
     }).compile();
 
     notifyProcessor = module.get<NotifyProcessor>(NotifyProcessor);
