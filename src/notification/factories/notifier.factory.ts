@@ -1,8 +1,8 @@
-import { NotificationTypes } from "../../app/enums/notification-types";
+import { NotificationTypes } from "../enums/notification-types";
 import { Notification } from "../interfaces/notification.interface";
 import { Notifier } from "../interfaces/notifier.interface";
-import PushNotifier from "../notifiers/push-notifier";
-import SmsNotifier from "../notifiers/sms-notifier";
+import PushNotifier from "../notifiers/push.notifier";
+import SmsNotifier from "../notifiers/sms.notifier";
 
 export default class NotifierFactory {
     getNotifier(notifierType: string, notification: Notification): Notifier {
