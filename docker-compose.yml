@@ -6,6 +6,8 @@ services:
       image: redis:alpine
       ports:
         - "${REDIS_EXTERNAL_PORT}:${REDIS_PORT}"
+      networks:
+          - redis
       restart: always
 
     notification_app:
@@ -15,23 +17,28 @@ services:
         - "notificaion_redis"
       depends_on:
         - "notificaion_redis"
+      networks:
+          - rabbitmq
+          - redis
+      depends_on:
+        - 'notification_rabbitmq'
+        - 'notificaion_redis'
       restart: always
 
     notification_rabbitmq:
       image: rabbitmq:3-management-alpine
       container_name: 'rabbitmq'
       environment:
-        - RABBITMQ_DEFAULT_USER=${RMQ_DEFAULT_USER}
-        - RABBITMQ_DEFAULT_PASS=${RMQ_DEFAULT_PASSWORD}
+        - RABBITMQ_DEFAULT_USER=${RMQ_USER}
+        - RABBITMQ_DEFAULT_PASS=${RMQ_PASSWORD}
       ports:
           - ${RMQ_EXTERNAL_PORT}:${RMQ_PORT}
           - ${RMQ_MANAGMENT_EXTERNAL_PORT}:${RMQ_MANAGMENT_PORT}
-      volumes:
-          - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-          - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
       networks:
-          - rabbitmq_go_net
+          - rabbitmq
+      restart: always
 
-  networks:
-    rabbitmq_go_net:
-      driver: bridge
+networks:
+  rabbitmq:
+    driver: bridge
+  redis:
