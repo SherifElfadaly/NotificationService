@@ -15,10 +15,10 @@ sudo docker-compose up -d
 
 Running the test
 ``` bash
-docker exec courses npm run test
+docker exec notification npm run test
 ```
 
 Test coverage
 ``` bash
-docker exec courses npm run test:cov
+docker exec notification npm run test:cov
 ```

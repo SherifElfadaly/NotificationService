@@ -8,16 +8,17 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = app.get<ConfigService>(ConfigService);
 
-  await NestFactory.createMicroservice<MicroserviceOptions>(
-    AppModule,
-    {
-      transport: Transport.RMQ,
-      options: {
-        urls: [`amqp://${config.get('rmq.user')}:${config.get('rmq.password')}@${config.get('rmq.port')}:${config.get('rmq.port')}`],
-        queue: 'notifications_queue',
-      },
+  await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+    transport: Transport.RMQ,
+    options: {
+      urls: [
+        `amqp://${config.get('rmq.user')}:${config.get(
+          'rmq.password',
+        )}@${config.get('rmq.port')}:${config.get('rmq.port')}`,
+      ],
+      queue: 'notifications_queue',
     },
-  );
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
